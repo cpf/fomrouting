@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Xbox live brol
+
+CHAIN='xbox'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p udp --dport 88 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3074 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 3074 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

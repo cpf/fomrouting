@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Age of Conan
+
+CHAIN='game-conan'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 7000:7999 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

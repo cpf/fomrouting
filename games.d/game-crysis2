@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Crysis-2
+#
+# Ref:
+#Game Port Usage
+#
+#For all traffic between server and client 'game' port is used 
+#(default 64100 - net_lobby_gamespy_online_port).
+#
+#                                                                                 Ports
+#SDK        Service                  Hostname                            Type  Local  Remote
+#
+#Available  hbmaster3                crysis2.available.gamespy.com        UDP   Any    27900
+#NN         natserver1               natneg1.gamespy.com                  UDP   game   27901
+#NN         natserver2               natneg2.gamespy.com                  UDP   game   27901
+#NN         nat neg                  Game client                          UDP   game   game*(other game)
+#QR2        hbmaster3                crysis2.master.gamespy.com           UDP   game   27900
+#QR2        Incoming queries         Game client                          UDP   game   Any
+#CDKey      keymaster                key.gamespy.com                      UDP   game   29910
+#SAKE       Profile settings/stats   crysis2.sake.gamespy.com             TCP   Any    Any (def:80)
+#Chat       Any IRC server           peerchat.gamespy.com                 TCP   Any    6667
+#GP         gpmanager                gpcm.gamespy.com                     TCP   Any    29900
+#GP         searchmanager            gpsp.gamespy.com                     TCP   Any    29901
+#SB         gmaster3                 crysis2.ms5.gamespy.com              TCP   Any    28910
+#SB         Server queries           game servers                         UDP   Any    game*(target server)
+#RSS        RSS Feed                 lb.crysis2.ea.com                    TCP  	80     80
+#
+#Default value for 'game' is 64100 (can be adjusted).
+#For incoming UDP traffic, only port "game" ( default 64100) 
+#is required to be opened.
+
+CHAIN='game-crysis2'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p udp -d crysis2.available.gamespy.com --dport 27900 -j ACCEPT
+iptables -A $CHAIN -p udp -d natneg1.gamespy.com --dport 27901 -j ACCEPT
+iptables -A $CHAIN -p udp -d natneg2.gamespy.com --dport 27901 -j ACCEPT
+iptables -A $CHAIN -p udp -d crysis2.master.gamespy.com --dport 27900 -j ACCEPT
+iptables -A $CHAIN -p udp -d key.gamespy.com --dport 29910 -j ACCEPT
+
+iptables -A $CHAIN -p tcp -d gpcm.gamespy.com --dport 29900 -j ACCEPT
+iptables -A $CHAIN -p tcp -d gpsp.gamespy.com --dport 29901 -j ACCEPT
+iptables -A $CHAIN -p tcp -d crysis2.ms5.gamespy.com --dport 28910 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

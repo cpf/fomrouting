@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Silkroads
+#
+# Refs:
+# * http://www.gamerzplanet.net/forums/silkroad-online-general-discussion/36859-what-port-does-sro-use-to-connect.html
+#
+# Protocolo: TCP/IP
+# 15779 (Login)
+# 15881 (Patch)
+# 15883 (Play)
+
+CHAIN='game-silkroads'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 15779 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 15881 -j ACCEPT 
+iptables -A $CHAIN -p tcp --dport 15883 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 15884 -j ACCEPT # volgens tcpdump EN NU WERKT HET!
+
+iptables -A FORWARD -j $CHAIN

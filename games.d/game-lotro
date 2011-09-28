@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Lord of the Rings Online
+#
+# Ref:
+# * http://www.gameconfig.co.uk/ports.aspx?game=lord+of+the+rings+online
+
+CHAIN='game-lotro'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 9000:9013 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 9000:9013 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 2900:2913 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 2900:2913 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

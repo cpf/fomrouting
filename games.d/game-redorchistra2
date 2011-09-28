@@ -1,0 +1,32 @@
+#!/bin/bash
+# Red Orchistra 2: Heroes of stalingrad
+#
+# Refs:
+# * http://www.heroesofstalingrad.com/
+
+# 7757 UDP/IP (Game Port)
+# 7758 UDP/IP (Query Port)
+# 7767 UDP/IP (GameSpy Query Port)
+# 28902 TCP/IP and UDP (Allows your Server to Connect to the Master Server Browser)
+# 8075 TCP/IP (Port set via ListenPort that your WebAdmin will run on)
+# 20610 UDP/IP (Steam Port)
+
+
+CHAIN='game-steam-ro2'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p udp --dport 7757:7758 -j ACCEPT 
+iptables -A $CHAIN -p udp --dport 7767 -j ACCEPT
+
+iptables -A $CHAIN -p tcp --dport 28902 -j ACCEPT 
+iptables -A $CHAIN -p tcp --dport 8075 -j ACCEPT 
+
+iptables -A $CHAIN -p udp --dport 20610 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

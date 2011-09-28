@@ -1,0 +1,17 @@
+#!/bin/bash
+# Minecraft
+#
+
+CHAIN='game-minecraft'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p udp --dport 25561:25565 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 25561:25565 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

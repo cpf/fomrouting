@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Crossfire
+#
+# Ref: http://forum.z8games.com/showthread.php?t=132898&highlight=ports+crossfire
+
+CHAIN='game-crossfire'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 13008 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 10009 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 16666 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 13008 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 10009 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 16666 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Game Etersage
+
+CHAIN_WOW='game-etersage'
+
+# clear chain
+iptables -F $CHAIN_WOW
+iptables -X $CHAIN_WOW
+
+# create chain
+iptables -N $CHAIN_WOW
+
+
+iptables -A $CHAIN_WOW -p tcp --dport 29000 -j ACCEPT
+iptables -A $CHAIN_WOW -p udp --dport 29000 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN_WOW

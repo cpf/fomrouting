@@ -1,0 +1,69 @@
+#! /bin/sh -e
+#
+# Author: Toon Geens
+#
+
+# Enable connection tracking
+modprobe ip_conntrack 		# might be enabled by default
+modprobe ip_conntrack_ftp	# was not enbaled by default, required for passive FTP
+
+echo "Removing existing rules"
+ip rule del fwmark 1
+ip rule del fwmark 2
+ip rule del fwmark 3
+ip rule del fwmark 4
+ip rule del fwmark 5
+
+echo "Adding rules"
+ip rule add fwmark 1 table dsl1
+ip rule add fwmark 2 table dsl2
+ip rule add fwmark 3 table dsl3
+ip rule add fwmark 4 table dsl4
+ip rule add fwmark 5 table dsl5
+
+iptables -t nat -F
+iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.11 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.12 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.13 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.14 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.15 -j MASQUERADE
+
+# redirect http over local squid proxy
+#iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+iptables -t mangle -F
+#iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.3.1-172.16.3.255 -j MARK --set-mark 1	# CREW
+iptables -t mangle -A PREROUTING --source 172.16.33.3 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.51.1-172.16.58.255 -j MARK --set-mark 2	# Zaal deel 1
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.59.1-172.16.66.255 -j MARK --set-mark 3	# Zaal deel 2
+
+iptables -t mangle -A PREROUTING --source 172.16.5.24 -j MARK --set-mark 3
+
+iptables -t mangle -A PREROUTING -p tcp --dport 80 -j MARK --set-mark 1
+iptables -t mangle -A PREROUTING -p tcp --dport 443 -j MARK --set-mark 1		# route https over proxy
+
+iptables -t filter -F
+iptables -t filter -P FORWARD DROP
+iptables -t filter -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+iptables -t filter -A FORWARD -p tcp --dport 80 -j ACCEPT 							# redirected to 8080 proxy
+iptables -t filter -A FORWARD -p tcp --dport 443 -j ACCEPT 							# allow https to go through
+iptables -t filter -A FORWARD -p tcp --dport 22 -j ACCEPT 							# SSH
+iptables -t filter -A FORWARD -p tcp --dport 2222 -j ACCEPT 						# temp - rent a lan
+iptables -t filter -A FORWARD -p tcp --source 172.16.5.0/24 --dport 21 -j ACCEPT	# FTP access for Helpdesk
+iptables -t filter -A FORWARD -p tcp --source 172.16.33.0/24 --dport 21 -j ACCEPT	# FTP access for Helpdesk
+iptables -t filter -A FORWARD -p icmp -j ACCEPT										# Allow icmp ping
+
+# Load game iptable scripts
+for SCRIPT in games.d/*
+do
+	if [ -f $SCRIPT -a -x $SCRIPT ]
+	then
+		echo "Executing $SCRIPT"
+		$SCRIPT
+	else
+		echo "Skipping over $SCRIPT (not executable)"
+	fi
+done
+
+iptables -t filter -A FORWARD -m limit --limit 60/minute -j LOG --log-level 7 --log-prefix "iptables: [DROP] "

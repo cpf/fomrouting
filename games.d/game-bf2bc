@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Battle field 2 - Bady Company
+#
+# Ref:
+# * http://forum.ea.com/eaforum/posts/list/375737.page
+
+CHAIN='game-bf2bc'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 18121 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 18126 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 18126 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 13505 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 18390 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 18395 -j ACCEPT
+
+iptables -A $CHAIN -p tcp --dport 18181:18186 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 18181:18186 -j ACCEPT
+
+iptables -A $CHAIN -p udp --dport 1050 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 2418 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 4355 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 11050:11070 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 19009 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 19567:19587 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 20867 -j ACCEPT
+
+iptables -A $CHAIN -p tcp --dport 9946 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 20167 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 11022 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 16767 -j ACCEPT
+
+#iptables -A $CHAIN -p udp --dport 19568 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 19577 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 20100 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 20367 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 20667 -j ACCEPT
+#iptables -A $CHAIN -p tcp --dport 9946 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

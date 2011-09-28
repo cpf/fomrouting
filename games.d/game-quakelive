@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Quake Live
+
+# http://www.quakelive.com/forum/showthread.php?2406-Tunneling-quake-live-in-network-with-firewall-proxy
+
+# TCP 80 - normal http -> needs to be the same external ip used with other ports !!!
+# TCP 443 - https for website log in
+# TCP 5222 - Authentication
+# UDP 27000-27999 for the game. 
+
+CHAIN='game-quake-live'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 5222 -j ACCEPT
+#iptables -A $CHAIN -p tcp --dport 27000:27999 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 27000:27999 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN
+
+iptables -t nat -I PREROUTING 1 -p tcp --dport 80 --destination quakelive.com -j ACCEPT

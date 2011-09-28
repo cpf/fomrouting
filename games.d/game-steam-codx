@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Ref: http://portforward.com/cports.htm
+#
+#							TCP					UDP
+# CoD						28960				20500, 20510, 28960
+# CoD 2						28960 				20500, 20510, 28960 
+# CoD 4						28960 				28960 
+# CoD - Modern Warfare 2	27014-27050 		1500, 3005, 3101, 3478-4380, 27000-27030, 28960 
+
+# Not ipmlemented:
+# CoD - United Offensive	28960 				20500, 20510, 20600, 20610, 28960 
+# CoD - World at War		28960				3074, 28960 
+# CoD - Black Ops			3074, 27014-27050 	3074, 3478-4380, 27000-27030 
+
+
+CHAIN='game-steam-codx'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+# Call of Duty 1 & 2 (COD1 & COD2)
+# http://portforward.com/cports.htm
+iptables -A $CHAIN -p tcp --dport 28960 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 28960 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 20500 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 20510 -j ACCEPT
+
+# CoD 4
+# TCP:	28960 (see cod1 & cod2)
+# UDP: 28960 (see cod1 & cod2)
+#iptables -A $CHAIN -p udp --dport 28905 -j ACCEPT # FOR COD4 COMPO @ VORAX SERVER INET
+
+# Modern Warfare 2 (COD6)
+# TCP: 27014-27050
+# UDP: 1500, 3005, 3101, 3478-4380 (see game-steam), 27000-27030 (see game-steam), 28960 (see cod1 & cod2)
+iptables -A $CHAIN -p udp --dport 1500 -j ACCEPT 
+iptables -A $CHAIN -p udp --dport 3005 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3101 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3084 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

@@ -1,0 +1,20 @@
+#!/bin/bash
+# Runes of Magic
+#
+# Refs:
+# * http://protocolinfo.org/wiki/Runes_of_Magic
+
+CHAIN='game-rom'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 21002 -j ACCEPT # account login
+iptables -A $CHAIN -p tcp --dport 16401:16402 -j ACCEPT # online gameplay
+iptables -A $CHAIN -p tcp --dport 16502 -j ACCEPT # online gameplay
+
+iptables -A FORWARD -j $CHAIN

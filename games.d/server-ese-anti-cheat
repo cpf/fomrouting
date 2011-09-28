@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+CHAIN='server-ese-anti-cheat'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 3011 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 4811 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

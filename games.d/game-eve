@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Eve Online
+
+CHAIN='game-eve'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 26000 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

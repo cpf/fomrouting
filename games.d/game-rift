@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Rift
+#
+# Ref:
+# * http://trionworlds.custhelp.com/app/answers/detail/a_id/39/kw/port%20forwarding
+
+CHAIN='game-rift'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+iptables -A $CHAIN -p tcp --dport 6520:6540 -j ACCEPT
+iptables -A FORWARD -j $CHAIN
+
+iptables -t mangle -A PREROUTING -p tcp --dport 6520:6540 -j MARK --set-mark 10 # needs same external ip as http/https ?

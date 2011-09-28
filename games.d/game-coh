@@ -1,0 +1,20 @@
+#!/bin/bash
+# Company of heroes
+#
+# Ref: 
+# * http://portforward.com/english/applications/port_forwarding/Company_of_Heroes/Company_of_Heroesindex.htm
+
+CHAIN='game-coh'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p udp --dport 6112 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 30260 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 9100 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

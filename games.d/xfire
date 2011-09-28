@@ -1,0 +1,18 @@
+#!/bin/bash
+# XFire
+#
+# Refs:
+# * http://www.xfire.com/faq/
+
+CHAIN='xfire'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 25999 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

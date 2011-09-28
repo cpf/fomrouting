@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Everquest 2
+#
+# Everquest 2     TCP: 7000, 7010         UDP: 3016-3021, 9700-9703, 9100, 32800-33000
+#
+# Ref:
+
+CHAIN='game-everquest2'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 7000 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 7010 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3016:3021 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 9700:9703 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 9100 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 32800:33000 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

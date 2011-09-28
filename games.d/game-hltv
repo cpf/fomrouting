@@ -1,0 +1,29 @@
+#!/bin/bash
+
+CHAIN='game-hltv'
+
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+# 27015
+# 5.24
+
+
+iptables -A $CHAIN -p tcp --dport 27020 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 27020 -j ACCEPT
+
+iptables -t nat -A PREROUTING -p tcp -i eth1.13 --dport 27015 -j DNAT --to 172.16.5.24:27015
+iptables -t nat -A PREROUTING -p udp -i eth1.13 --dport 27015 -j DNAT --to 172.16.5.24:27015
+
+#iptables -A FORWARD -i eth1.13 -o eth0 -p tcp --dport 27015 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+#iptables -A FORWARD -i eth1.13 -o eth0 -p udp --dport 27015 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+# $IPTABLES -A FORWARD -i $EXTIF -o $INTIF -p tcp --dport 80 -m state \
+# --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+#ptables -t nat -I PREROUTING -p tcp -i INTERNET --dport 21 -j DNAT --to 192.168.x.xx:21 

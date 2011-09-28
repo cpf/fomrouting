@@ -1,0 +1,19 @@
+#!/bin/bash
+
+CHAIN_WOW='game-wow'
+
+# clear chain
+iptables -F $CHAIN_WOW
+iptables -X $CHAIN_WOW
+
+# create chain
+iptables -N $CHAIN_WOW
+
+
+iptables -A $CHAIN_WOW -p tcp --dport 1119 -j ACCEPT
+iptables -A $CHAIN_WOW -p tcp --dport 3724 -j ACCEPT
+iptables -A $CHAIN_WOW -p tcp --dport 6112 -j ACCEPT
+iptables -A $CHAIN_WOW -p tcp --dport 6881:6999 -j ACCEPT
+iptables -A $CHAIN_WOW -p udp --dport 3724 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN_WOW

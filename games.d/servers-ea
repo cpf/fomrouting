@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Teamspeak 2
+
+CHAIN='EA-login'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 18121 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 18126 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 18126 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 13505 -j ACCEPT
+
+#iptables -t nat -I PREROUTING 1 -p tcp --dport 80 --destination  -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

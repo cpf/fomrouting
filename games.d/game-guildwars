@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Guildwars
+
+CHAIN='game-guildwars'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 6112 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Steam + Modern Warefare 2 (COD6)
+#
+# Refs:
+# * https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
+# * http://www.internalwave.com/how-to/nat-strict-ports-for-modern-warfare-2-iwnet-and-steam
+# * http://portforward.com/cports.htm
+#
+
+CHAIN='game-steam'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+# Steam Client
+iptables -A $CHAIN -p udp --dport 27000:27030 -j ACCEPT # steam game client traffic + matchmaking
+iptables -A $CHAIN -p tcp --dport 27014:27050 -j ACCEPT # steam downloads
+iptables -A $CHAIN -p udp --dport 4380 -j ACCEPT
+
+# Steamworks P2P Networking
+iptables -A $CHAIN -p udp --dport 3478 -j ACCEPT 
+iptables -A $CHAIN -p udp --dport 4379:4380 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 4380 -j ACCEPT # duplicate
+
+iptables -A FORWARD -j $CHAIN
+
+# Run steam downloads over dsl4
+iptables -t mangle -A PREROUTING -i eth0 -p tcp --dport 27014:27050 -j MARK --set-mark 4

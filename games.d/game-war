@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# iptable rules for game:
+# War
+
+CHAIN='game-war'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 1380 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 10622 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 33100:33500 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

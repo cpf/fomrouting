@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Quakenet IRC
+
+CHAIN='quakenet'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+
+#ip added 94.225.52.15 to trust list
+iptables -t filter -A FORWARD -p tcp -d irc.quakenet.org --dport 6667 -j ACCEPT
+iptables -t mangle -A PREROUTING -p tcp -d irc.quakenet.org --dport 6667 -j MARK --set-mark 5
+
+# irc quakenet operator sorcerer (crew) his bouncer
+iptables -t filter -A FORWARD -p tcp -d 188.40.43.123 --dport 5000 -j ACCEPT 
+# quakenet intranet
+# iptables -t filter -A FORWARD -p tcp -d quakenet.org --dport 3000 -j ACCEPT
+# iptables -t mangle -A PREROUTING -p tcp -d quakenet.org --dport 3000 -j MARK --set-mark 1
+
+
+iptables -A FORWARD -j $CHAIN

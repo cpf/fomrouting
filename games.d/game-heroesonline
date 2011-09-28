@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Heroes online
+#
+# Ref:
+# * http://www.battlefieldheroes.com/en/forum/showthread.php?tid=4567
+
+CHAIN='game-heroesonline'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp -d 159.153.235.1 -j ACCEPT
+iptables -A $CHAIN -p tcp -d 159.153.234.50 -j ACCEPT
+
+#iptables -A $CHAIN -p tcp -d 159.153.235.1 --dport 18270 -j ACCEPT
+#iptables -A $CHAIN -p tcp -d 159.153.235.1 --dport 18275 -j ACCEPT
+#iptables -A $CHAIN -p tcp -d 159.153.235.1 --dport 18061 -j ACCEPT
+#iptables -A $CHAIN -p tcp -d 159.153.235.1 --dport 18065 -j ACCEPT
+#iptables -A $CHAIN -p tcp -d 159.153.234.50 --dport 18051 -j ACCEPT
+#iptables -A $CHAIN -p tcp -d 159.153.234.50 --dport 18055 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

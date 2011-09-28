@@ -1,0 +1,18 @@
+#!/bin/bash
+# ustream.tv
+#
+# Ref: 
+# * http://helpcenter.ustream.tv/content/opening-firewall-ports-ustream
+
+CHAIN='ustream'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 1935 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

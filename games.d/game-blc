@@ -1,0 +1,27 @@
+#!/bin/bash
+# Bloodline Champions
+#
+# Refs:
+# * http://www.bloodlinechampions.com/forum/viewtopic.php?f=31&t=2606&hilit=Ports
+
+#10204: Bloodgate (Login/Community Server) -- TCP/UDP ??
+#54545: Main Server List -- TCP/UDP ??
+#50000-50500: Game Servers -- TCP/UDP ??
+
+CHAIN='game-blc'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 10204 -j ACCEPT 			# Bloodgate (Login/Community Server)
+iptables -A $CHAIN -p tcp --dport 54545 -j ACCEPT 			# Main Server List
+iptables -A $CHAIN -p tcp --dport 50000:50500 -j ACCEPT 	# #50000-50500: Game Servers -- TCP/UDP ??
+iptables -A $CHAIN -p udp --dport 50000:50500 -j ACCEPT 	# #50000-50500: Game Servers -- TCP/UDP ??
+
+iptables -A $CHAIN -p tcp --dport 24568 --destination bloodgate.bloodlinechampions.com -j ACCEPT # Added after log analyse
+
+iptables -A FORWARD -j $CHAIN

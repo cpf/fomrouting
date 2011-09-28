@@ -1,0 +1,15 @@
+#!/bin/bash
+
+CHAIN='shoutcasters'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+iptables -N $CHAIN
+
+iptables -A PREROUTING -t nat -i eth1.14 -p tcp --dport 60000 -j DNAT --to 172.16.5.16:28960
+iptables -A PREROUTING -t nat -i eth1.14 -p udp --dport 60000 -j DNAT --to 172.16.5.16:28960
+
+iptables -t nat -A POSTROUTING -o eth0 --destination 172.16.5.16 --dport 28960 -j SNAT --to-source 172.16.1.1
+

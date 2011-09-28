@@ -1,0 +1,21 @@
+#!/bin/bash
+# Starcraft 2
+#
+# Refs:
+# * http://us.blizzard.com/support/article.xml?locale=en_US&articleId=26224
+
+CHAIN='game-sc2'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 1119 -j ACCEPT # battlenet
+iptables -A $CHAIN -p tcp --dport 1120 -j ACCEPT # battlenet
+iptables -A $CHAIN -p udp --dport 1119 -j ACCEPT # voice
+iptables -A $CHAIN -p udp --dport 1120 -j ACCEPT # voice
+
+iptables -A FORWARD -j $CHAIN

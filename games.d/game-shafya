@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Shafya
+
+CHAIN='game-shafya'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 30800:30810 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# iptable rules for game:
+# fifa 11
+
+CHAIN='game-fifa11'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 9980:9989 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 10000:10500 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 42100:42199 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3659 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 6000 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 9570 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 10500:12500 -j ACCEPT
+
+iptables -t mangle -A PREROUTING -p tcp --dport 9980:9989 -j MARK --set-mark 10
+iptables -t mangle -A PREROUTING -p tcp --dport 10000:10500 -j MARK --set-mark 10
+iptables -t mangle -A PREROUTING -p tcp --dport 42100:42199 -j MARK --set-mark 10
+iptables -t mangle -A PREROUTING -p udp --dport 3659 -j MARK --set-mark 10
+iptables -t mangle -A PREROUTING -p udp --dport 6000 -j MARK --set-mark 10
+iptables -t mangle -A PREROUTING -p udp --dport 9570 -j MARK --set-mark 10
+iptables -t mangle -A PREROUTING -p udp --dport 10500:12500 -j MARK --set-mark 10
+
+iptables -A FORWARD -j $CHAIN

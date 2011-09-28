@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Warhammer Online
+
+CHAIN='game-warhammer'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 1380 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 8048 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 1380 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 8048 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

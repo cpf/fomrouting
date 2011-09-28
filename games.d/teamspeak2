@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Teamspeak 2
+
+CHAIN='teamspeak2'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 51234 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 14534 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 8765:9015 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 51234 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 14534 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 8765:9015 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

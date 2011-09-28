@@ -1,0 +1,21 @@
+#!/bin/bash
+# Final Fantasy 14
+#
+# Refs:
+# * http://us.blizzard.com/support/article.xml?locale=en_US&articleId=26224
+
+CHAIN='game-ff14'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 54992:55551 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 55296:55551 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 443 -j ACCEPT
+
+
+iptables -A FORWARD -j $CHAIN

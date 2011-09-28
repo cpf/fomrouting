@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Medal of Honor 2010
+#
+# Refs:
+# CONFLICTING: http://forum.ea.com/eaforum/posts/list/2738733.page
+# CONFLICTING: http://forum.ea.com/eaforum/posts/list/3139003.page
+
+CHAIN='game-moh'
+
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 6140 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 61665 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 63048 -j ACCEPT  
+iptables -A $CHAIN -p udp --dport 7673 -j ACCEPT  
+iptables -A $CHAIN -p udp --dport 9999 -j ACCEPT  
+
+iptables -A FORWARD -j $CHAIN

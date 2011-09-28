@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Ventrillo
+
+CHAIN='ventrillo'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 6000 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 6100 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 3784:4034 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 6000 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 6100 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3784:4034 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN
