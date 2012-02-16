@@ -13,22 +13,25 @@ iface eth0 inet static
 
 # NIC2 - WAN
 auto eth1
-#iface eth1 inet dhcp
+iface eth1 inet manual
+#	address 192.168.10.10
+#	netmask 255.255.255.255
 
 # Telenet 1
 auto eth1.11
 iface eth1.11 inet dhcp
 #	hwaddress ether 95:d4:ab:8a:93:b0
+	hwaddress ether 72:FB:22:31:68:09
 
 # Telenet 2
 auto eth1.12
 iface eth1.12 inet dhcp
-	hwaddress ether 72:fb:22:31:68:09
+	hwaddress ether 08:00:27:28:a4:1b
 
 # Telenet 3
 auto eth1.13
 iface eth1.13 inet dhcp
-	hwaddress ether 08:00:27:28:A4:1B
+	hwaddress ether 00:11:85:EA:63:0C
 
 # Telenet 4
 auto eth1.14
@@ -41,3 +44,26 @@ iface eth1.15 inet static
 	address 10.0.0.2
 	netmask 255.255.255.0
 	hwaddress ether 08:00:27:E1:8D:69
+
+# The VPN interface, with default settings for 10.x.x.x
+#auto br0
+#iface br0 inet static
+        # First bring up the OpenVPN interface so we can bridge it
+#        pre-up /usr/sbin/openvpn --mktun --dev tap0
+        # Copied from eth0
+#        address 10.10.10.127 # Gateway's inside static IP
+#        netmask 255.0.0.0
+#        network 10.0.0.0
+#        broadcast 10.255.255.255
+        # New options
+        #
+#        bridge_ports eth0 tap0
+        # Forward delay in seconds
+#        bridge_fd 1
+#        bridge_stp off
+        # DNS setup copied from eth0, too
+        # dns-* options are implemented by the resolvconf package, if installed
+#        dns-nameservers 205.152.144.23 205.152.37.23 205.152.111.254
+#        dns-search default.net
+        # And bring it down again when we're done
+#        post-down /usr/sbin/openvpn --rmtun --dev tap0
