@@ -8,18 +8,18 @@ modprobe ip_conntrack 		# might be enabled by default
 modprobe ip_conntrack_ftp	# was not enbaled by default, required for passive FTP
 
 echo "Removing existing rules"
-ip rule del fwmark 1
-ip rule del fwmark 2
-ip rule del fwmark 3
-ip rule del fwmark 4
-ip rule del fwmark 5
+ip rule del fwmark 1 |true
+ip rule del fwmark 2 |true
+ip rule del fwmark 3 |true
+ip rule del fwmark 4 |true
+ip rule del fwmark 5 |true
 
 echo "Adding rules"
-ip rule add fwmark 1 table dsl1
-ip rule add fwmark 2 table dsl2
-ip rule add fwmark 3 table dsl3
-ip rule add fwmark 4 table dsl4
-ip rule add fwmark 5 table dsl5
+ip rule add fwmark 1 table dsl1 # telenet 1
+ip rule add fwmark 2 table dsl2 # telenet 2
+ip rule add fwmark 3 table dsl3 # telenet 3
+ip rule add fwmark 4 table dsl4 # telenet 4
+ip rule add fwmark 5 table dsl5 # vdsl
 
 iptables -t nat -F
 iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.11 -j MASQUERADE
@@ -50,12 +50,10 @@ iptables -t filter -A FORWARD -p tcp --dport 80 -j ACCEPT 							# redirected to
 iptables -t filter -A FORWARD -p tcp --dport 443 -j ACCEPT 							# allow https to go through
 iptables -t filter -A FORWARD -p tcp --dport 22 -j ACCEPT 							# SSH
 iptables -t filter -A FORWARD -p tcp --dport 2222 -j ACCEPT 						# temp - rent a lan
-iptables -t filter -A FORWARD -p tcp --source 172.16.5.0/24 --dport 21 -j ACCEPT	# FTP access for Helpdesk
-iptables -t filter -A FORWARD -p tcp --source 172.16.33.0/24 --dport 21 -j ACCEPT	# FTP access for Helpdesk
 iptables -t filter -A FORWARD -p icmp -j ACCEPT										# Allow icmp ping
 
 # Load game iptable scripts
-for SCRIPT in games.d/*
+for SCRIPT in configs.d/*
 do
 	if [ -f $SCRIPT -a -x $SCRIPT ]
 	then

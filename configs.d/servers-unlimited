@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# IP RANGE
+IPRANGE=172.16.5.0/24
+
+# CONFIG FOR UNLIMITED RANGES
+iptables -t mangle -A PREROUTING --source $IPRANGE -j MARK --set-mark 1
+
+iptables -t filter -A FORWARD --source $IPRANGE -j ACCEPT

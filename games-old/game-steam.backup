@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# iptable rules for game:
+# Steam + Modern Warefare 2 (COD6)
+#
+# Refs:
+# * https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
+# * http://www.internalwave.com/how-to/nat-strict-ports-for-modern-warfare-2-iwnet-and-steam
+
+
+CHAIN='game-steam'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+# Steam Client
+iptables -A $CHAIN -p udp --dport 27000:27030 -j ACCEPT # steam game client traffic + matchmaking
+iptables -A $CHAIN -p tcp --dport 27014:27050 -j ACCEPT # steam downloads
+iptables -A $CHAIN -p udp --dport 4380 -j ACCEPT
+
+# Steamworks P2P Networking
+iptables -A $CHAIN -p udp --dport 3478 -j ACCEPT 
+iptables -A $CHAIN -p udp --dport 4379 -j ACCEPT
+# iptables -A $CHAIN -p udp --dport 4380 -j ACCEPT # duplicate
+
+# Modern warfare 2
+iptables -A $CHAIN -p udp --dport 1500 -j ACCEPT 
+iptables -A $CHAIN -p udp --dport 3005 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3101 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 28960 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN
+
+# Run steam over dsl line 5
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 27000:27030 -j MARK --set-mark 5
+iptables -t mangle -A PREROUTING -i eth0 -p tcp --dport 27014:27050 -j MARK --set-mark 5
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 4380 -j MARK --set-mark 5
+
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 3478 -j MARK --set-mark 5
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 4379 -j MARK --set-mark 5
+
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 1500 -j MARK --set-mark 5
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 3005 -j MARK --set-mark 5
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 3101 -j MARK --set-mark 5
+iptables -t mangle -A PREROUTING -i eth0 -p udp --dport 28960 -j MARK --set-mark 5
+
+#iptables -A $CHAIN -p udp --dport 28960:29000 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 20800 -j ACCEPT
+#iptables -A $CHAIN -p tcp --dport 20800 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 20810 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 3300 -j ACCEPT
+
+#iptables -A $CHAIN -p tcp --dport 27014:27050 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 27000:27030 -j ACCEPT
+# Run steam over dsl line 5
+#iptables -t mangle -A PREROUTING -p udp --dport 28960:29000 -j MARK --set-mark 5
+#iptables -t mangle -A PREROUTING -p udp --dport 20800 -j MARK --set-mark 5
+#iptables -t mangle -A PREROUTING -p tcp --dport 20800 -j MARK --set-mark 5
+#iptables -t mangle -A PREROUTING -p udp --dport 20810 -j MARK --set-mark 5
+#iptables -t mangle -A PREROUTING -p udp --dport 3300 -j MARK --set-mark 5
