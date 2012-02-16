@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# CONFIG FOR UNLIMITED RANGES
+iptables -t filter -A FORWARD -p tcp --source 172.16.40.0/24 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --source 172.16.41.0/24 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp --source 172.16.42.0/24 -j ACCEPT

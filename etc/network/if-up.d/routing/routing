@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#!/bin/bash
+ 
+IP=/sbin/ip
+ 
+GATEWAY=$(ip route show | grep $IFACE | grep ^default | cut -d ' ' -f 3)
+echo "Configured $IFACE up with GW $GATEWAY"
+
+case "$IFACE" in
+  eth1.11)
+	# use this gateway as default
+	#ip route del default dev $IFACE
+	ip route add default via $GATEWAY dev $IFACE table dsl1
+    ;;
+  eth1.12)
+	ip route del default dev $IFACE
+	ip route add default via $GATEWAY dev $IFACE table dsl2
+    ;;
+  eth1.13)
+	ip route del default dev $IFACE
+	ip route add default via $GATEWAY dev $IFACE table dsl3
+   ;;
+  eth1.14)
+	ip route del default dev $IFACE
+	ip route add default via $GATEWAY dev $IFACE table dsl4
+   ;;
+  eth1.15)
+	# DSL connection
+	# ip route del default dev $IFACE
+	GATEWAY=10.0.0.1
+	ip route add default via $GATEWAY dev $IFACE table dsl5
+   ;;
+esac

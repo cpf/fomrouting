@@ -1,0 +1,43 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# NIC1 - LAN 
+auto eth0
+iface eth0 inet static
+	address 172.16.1.1
+	netmask 255.255.0.0
+
+# NIC2 - WAN
+auto eth1
+#iface eth1 inet dhcp
+
+# Telenet 1
+auto eth1.11
+iface eth1.11 inet dhcp
+#	hwaddress ether 95:d4:ab:8a:93:b0
+
+# Telenet 2
+auto eth1.12
+iface eth1.12 inet dhcp
+	hwaddress ether 72:fb:22:31:68:09
+
+# Telenet 3
+auto eth1.13
+iface eth1.13 inet dhcp
+	hwaddress ether 08:00:27:28:A4:1B
+
+# Telenet 4
+auto eth1.14
+iface eth1.14 inet dhcp
+	hwaddress ether 08:00:27:EC:47:19
+
+# Belgacom VDSL2
+auto eth1.15
+iface eth1.15 inet static
+	address 10.0.0.2
+	netmask 255.255.255.0
+	hwaddress ether 08:00:27:E1:8D:69
