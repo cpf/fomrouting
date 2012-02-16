@@ -53,15 +53,6 @@ iptables -t filter -A FORWARD -p tcp --dport 2222 -j ACCEPT 						# temp - rent 
 iptables -t filter -A FORWARD -p icmp -j ACCEPT										# Allow icmp ping
 
 # Load game iptable scripts
-for SCRIPT in configs.d/*
-do
-	if [ -f $SCRIPT -a -x $SCRIPT ]
-	then
-		echo "Executing $SCRIPT"
-		$SCRIPT
-	else
-		echo "Skipping over $SCRIPT (not executable)"
-	fi
-done
+run-parts --verbose configs.d
 
 iptables -t filter -A FORWARD -m limit --limit 60/minute -j LOG --log-level 7 --log-prefix "iptables: [DROP] "
