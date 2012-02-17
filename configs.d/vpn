@@ -10,15 +10,18 @@ iptables -N $CHAIN
 
 # VPN voor tones.be - nodig voor kassa systeem
 # GRE tunnel
-iptables -A $CHAIN --source 172.16.38.13 --destination 81.82.205.18 -j ACCEPT
+#iptables -A $CHAIN --source 172.16.38.13 --destination 81.82.205.18 -j ACCEPT
 # bankterminal voor tones
-iptables -A $CHAIN --source 172.16.38.14 --destination 81.82.205.18 -j ACCEPT
-iptables -A $CHAIN --source 172.16.38.14 -p tcp --dport 5450 -j ACCEPT
-iptables -A $CHAIN --source 172.16.38.14 -p udp --dport 5450 -j ACCEPT
+#iptables -A $CHAIN --source 172.16.38.14 --destination 81.82.205.18 -j ACCEPT
+#iptables -A $CHAIN --source 172.16.38.14 -p tcp --dport 5450 -j ACCEPT
+#iptables -A $CHAIN --source 172.16.38.14 -p udp --dport 5450 -j ACCEPT
 
 
 # VPN voor Arjan/Rent-a-lan 
 # GRE tunnel
-iptables -A $CHAIN --destination 82.197.206.41 -j ACCEPT
+#iptables -A $CHAIN --destination 82.197.206.41 -j ACCEPT
+
+# VPN voor
+iptables -A $CHAIN --destination 81.165.173.121 -j ACCEPT
 
 iptables -A FORWARD -j $CHAIN

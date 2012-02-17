@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Playstation Network
+
+CHAIN='psn'
+
+PSN_DESTINATION="198.107.157.154"
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 5223 --destination $PSN_DESTINATION -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3478 --destination $PSN_DESTINATION -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3479 --destination $PSN_DESTINATION -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3658 --destination $PSN_DESTINATION -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN
