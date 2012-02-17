@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+# FoM Streaming
+
+IP_STREAMING=[
+  "172.16.39.8",
+  "172.16.39.12",
+  "172.16.39.26"
+]
+MARK=5
+### END CONFIG ###
+
+import os
+
+for ip in IP_STREAMING:
+  # Redirect traffic over line $MARK
+  os.system("iptables -t mangle -A PREROUTING --source %s -j MARK --set-mark %d" % (ip, MARK))
+  # Allow traffic to pass through
+  os.system("iptables -t filter -A FORWARD --source %s -j ACCEPT" % ip)

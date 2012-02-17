@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Cartoon MP Shooter
+#
+
+CHAIN='50-cartoon-mp-shooter'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p udp --dport 7000:7009 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 7000:7009 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

@@ -11,6 +11,9 @@ iptables -N $CHAIN
 # VPN voor tones.be - nodig voor kassa systeem
 # GRE tunnel
 iptables -A $CHAIN --destination 81.82.205.18 -j ACCEPT
+iptables -A $CHAIN --source 172.16.37.8 -j ACCEPT
+iptables -A $CHAIN --source 172.16.37.9 -j ACCEPT
+
 
 # VPN voor Arjan/Rent-a-lan 
 # GRE tunnel

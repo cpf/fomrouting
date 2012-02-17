@@ -60,4 +60,4 @@ iptables -t filter -A FORWARD -p icmp -j ACCEPT										# Allow icmp ping
 iptables -t filter -A FORWARD -p tcp --destination 77.243.236.220 -j ACCEPT
 
 # Load game iptable scripts
-run-parts --verbose --regeix '.*' configs.d
+run-parts --verbose --regex '.*' configs.d
