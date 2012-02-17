@@ -1,0 +1,23 @@
+#!/bin/bash
+
+CHAIN='vpn'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+iptables -N $CHAIN
+
+# VPN voor tones.be - nodig voor kassa systeem
+# GRE tunnel
+iptables -A $CHAIN --destination 81.82.205.18 -j ACCEPT
+
+# VPN voor Arjan/Rent-a-lan 
+# GRE tunnel
+iptables -A $CHAIN --destination 82.197.206.41 -j ACCEPT
+
+# VPN voor shoutcast
+iptables -A $CHAIN -p udp --dport 1194 --destination 81.82.204.12 -j ACCEPT
+#192.168.66.0
+
+iptables -A FORWARD -j $CHAIN

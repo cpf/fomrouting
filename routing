@@ -49,19 +49,15 @@ iptables -t filter -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 iptables -t filter -A FORWARD -p tcp --dport 80 -j ACCEPT 							# redirected to 8080 proxy
 iptables -t filter -A FORWARD -p tcp --dport 443 -j ACCEPT 							# allow https to go through
-iptables -t filter -A FORWARD -p tcp --dport 22 -j ACCEPT 							# SSH
-iptables -t filter -A FORWARD -p tcp --dport 2222 -j ACCEPT 						# temp - rent a lan
+#iptables -t filter -A FORWARD -p tcp --dport 22 -j ACCEPT 							# SSH
+#iptables -t filter -A FORWARD -p tcp --dport 2222 -j ACCEPT 						# temp - rent a lan
 iptables -t filter -A FORWARD -p icmp -j ACCEPT										# Allow icmp ping
 
 #iptables -t filter -A FORWARD -p 
-
 
 
 # allow ftp for de-raedt.eu
 iptables -t filter -A FORWARD -p tcp --destination 77.243.236.220 -j ACCEPT
 
 # Load game iptable scripts
-run-parts --verbose configs.d
-
-iptables -t filter -A FORWARD --source 172.16.5.160 -j LOG --log-level 7 --log-prefix "iptables: [DROP] thomas "
-iptables -t filter -A FORWARD -m limit --limit 60/minute -j LOG --log-level 7 --log-prefix "iptables: [DROP] "
+run-parts --verbose --regeix '.*' configs.d
