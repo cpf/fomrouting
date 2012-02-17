@@ -34,9 +34,8 @@ iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.15 -j MASQUERADE
 iptables -t mangle -F
 #iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.3.1-172.16.3.255 -j MARK --set-mark 1	# CREW
 
-iptables -t mangle -A PREROUTING --source 172.16.33.3 -j MARK --set-mark 2
 iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.51.1-172.16.58.255 -j MARK --set-mark 2	# Zaal deel 1
-iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.59.1-172.16.66.255 -j MARK --set-mark 3	# Zaal deel 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.59.1-172.16.67.255 -j MARK --set-mark 3	# Zaal deel 2
 
 iptables -t mangle -A PREROUTING -p tcp --dport 80 -j MARK --set-mark 1
 iptables -t mangle -A PREROUTING -p tcp --dport 443 -j MARK --set-mark 1		# route https over proxy
