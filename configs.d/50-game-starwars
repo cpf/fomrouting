@@ -23,7 +23,7 @@ iptables -N $CHAIN
 
 iptables -A $CHAIN -p udp --dport 17384 -j ACCEPT
 iptables -A $CHAIN -p udp --dport 25610 -j ACCEPT
-iptables -A $CHAIN -p udp --dport 22334 -j ACCEPT
+#iptables -A $CHAIN -p udp --dport 22334 -j ACCEPT
 
 iptables -A $CHAIN -p tcp --dport 8995 -j ACCEPT
 iptables -A $CHAIN -p tcp --dport 12000:12999 -j ACCEPT
