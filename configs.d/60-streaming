@@ -6,7 +6,7 @@ IP_STREAMING=[
   "172.16.39.8",
   "172.16.39.12",
   "172.16.39.26",
-  "172.16.55.85" # shoutcaster in de zaal, val eend lastig voor deze kerel te contacteren
+  "172.16.39.31"
 ]
 MARK=5
 ### END CONFIG ###
