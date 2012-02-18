@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+# Star Wars - Old Republic
+
+# Ref:
+# * http://www.swtor.com/support/helpcenter/2010
+#
+# The port numbers that are required to do this are 
+# 8995, 12000-12999 and 20000-30000 (TCP)
+# For specific information on how to open these ports
+# on your particular router, please consult the router
+# product manual or the manufacturer’s website directly.
+
+CHAIN='game-starwars'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p udp --dport 17384 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 25610 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 22334 -j ACCEPT
+
+iptables -A $CHAIN -p tcp --dport 8995 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 12000:12999 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 20000:30000 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

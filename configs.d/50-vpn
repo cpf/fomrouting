@@ -20,7 +20,8 @@ iptables -A $CHAIN --source 172.16.37.9 -j ACCEPT
 iptables -A $CHAIN --destination 82.197.206.41 -j ACCEPT
 
 # VPN voor shoutcast
-iptables -A $CHAIN -p udp --dport 1194 --destination 81.82.204.12 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 1194 --destination 81.82.204.251 -j ACCEPT
+iptables -t mangle -A OUTPUT -p udp --sport 1194 -j MARK --set-mark 2
 #192.168.66.0
 
 iptables -A FORWARD -j $CHAIN
