@@ -52,9 +52,17 @@ iptables -A $CHAIN -p tcp --dport 5938 -j ACCEPT
 iptables -A $CHAIN -p tcp --dport 1863 -j ACCEPT
 iptables -A $CHAIN -p tcp --dport 33033 -j ACCEPT
 
-iptables -t mangle -A PREROUTING -m iprange --dst-range 151.42.0.1-151.42.255.255 -j MARK --set-mark 2
-iptables -t mangle -A PREROUTING -m iprange --dst-range 209.170.124.1-209.170.124.255 -j MARK --set-mark 2
-iptables -t mangle -A PREROUTING -m iprange --dst-range 209.170.122.1-209.170.122.255 -j MARK --set-mark 2
-iptables -t mangle -A PREROUTING -m iprange --dst-range 194.247.30.1-194.247.30.255 -j MARK --set-mark 2
+
+# PUT FUCKING MW3 IN RANGE PL0X
+iptables -t mangle -A PREROUTING --src 172.16.5.45 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.150 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.163 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.164 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.116 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.118 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.119 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.120 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.160 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.87 -j MARK --set-mark 2
 
 iptables -A FORWARD -j $CHAIN
