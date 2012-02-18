@@ -7,6 +7,7 @@
 # CoD 2						28960 				20500, 20510, 28960 
 # CoD 4						28960 				28960 
 # CoD - Modern Warfare 2	27014-27050 		1500, 3005, 3101, 3478-4380, 27000-27030, 28960 
+# CoD - MW3                 5938                5938
 
 # Not ipmlemented:
 # CoD - United Offensive	28960 				20500, 20510, 20600, 20610, 28960 
@@ -42,5 +43,17 @@ iptables -A $CHAIN -p udp --dport 1500 -j ACCEPT
 iptables -A $CHAIN -p udp --dport 3005 -j ACCEPT
 iptables -A $CHAIN -p udp --dport 3101 -j ACCEPT
 iptables -A $CHAIN -p udp --dport 3084 -j ACCEPT
+
+# MW3
+# could be 80-81,443,3074-3075,3478-3479,3658,5223
+iptables -A $CHAIN -p udp --dport 3074:3075 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 5938 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 5938 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 1863 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 33033 -j ACCEPT
+
+iptables -t mangle -A PREROUTING -m iprange --dst-range 151.42.0.1-151.42.255.255 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -m iprange --dst-range 209.170.124.1-209.170.124.255 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -m iprange --dst-range 209.170.122.1-209.170.122.255 -j MARK --set-mark 2
 
 iptables -A FORWARD -j $CHAIN
