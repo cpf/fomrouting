@@ -24,4 +24,4 @@ iptables -A $CHAIN -p tcp --dport 57450 -j ACCEPT
 
 iptables -A FORWARD -j $CHAIN
 
-#iptables -t mangle --destination 31.222.133.87 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --destination 173.199.111.207 -j MARK --set-mark 5
