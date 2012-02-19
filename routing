@@ -38,7 +38,8 @@ iptables -t mangle -F
 
 iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.43.1-172.16.44.255 -j MARK --set-mark 2	# VIP
 iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.51.1-172.16.58.255 -j MARK --set-mark 2	# Zaal deel 1
-iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.59.1-172.16.61.255 -j MARK --set-mark 3	# Zaal deel 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.59.1-172.16.60.255 -j MARK --set-mark 3	# Zaal deel 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.61.1-172.16.61.255 -j MARK --set-mark 4	# Zaal deel 2
 iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.62.1-172.16.63.255 -j MARK --set-mark 2	# Zaal deel 2
 iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.65.1-172.16.67.255 -j MARK --set-mark 4	# Zaal deel 3
 
