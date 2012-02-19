@@ -52,7 +52,20 @@ iptables -A $CHAIN -p tcp --dport 5938 -j ACCEPT
 iptables -A $CHAIN -p tcp --dport 1863 -j ACCEPT
 iptables -A $CHAIN -p tcp --dport 33033 -j ACCEPT
 
+#iptables -t mangle -A PREROUTING -m iprange --src-range 212.3.238.1-212.3.238.255 -j MARK --set-mark 2
+#iptables -t mangle -A PREROUTING -m iprange --src-range 68.142.91.1-68.142.91.255 -j MARK --set-mark 2
+#iptables -t mangle -A PREROUTING -m iprange --src-range 209.170.124.1-209.170.124.255 -j MARK --set-mark 2
+#iptables -t mangle -A PREROUTING -m iprange --src-range 208.64.200.1-208.64.200.255 -j MARK --set-mark 2
 
+# URL: http://portforward.com/cports.htm
+# 3074, 27014-27050 TCP
+# 3074, 27000-27030 UDP
+iptables -t mangle -A PREROUTING -p udp --dport 3074 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -p udp --dport 27014:27050 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -p tcp --dport 3074 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -p tcp --dport 27000:27030 -j MARK --set-mark 2
+
+# Servers
 # PUT FUCKING MW3 IN RANGE PL0X
 iptables -t mangle -A PREROUTING --src 172.16.5.45 -j MARK --set-mark 2
 iptables -t mangle -A PREROUTING --src 172.16.5.150 -j MARK --set-mark 2
