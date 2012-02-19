@@ -1,0 +1,52 @@
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination         
+MARK       all  --  172.16.33.3          0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  0.0.0.0/0            0.0.0.0/0           source IP range 172.16.51.1-172.16.58.255 MARK xset 0x2/0xffffffff 
+MARK       all  --  0.0.0.0/0            0.0.0.0/0           source IP range 172.16.43.1-172.16.44.255 MARK xset 0x2/0xffffffff 
+MARK       all  --  0.0.0.0/0            0.0.0.0/0           source IP range 172.16.64.1-172.16.67.255 MARK xset 0x4/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:80 MARK xset 0x1/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:443 MARK xset 0x1/0xffffffff 
+MARK       all  --  0.0.0.0/0            192.168.66.0/24     MARK xset 0xa/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:27014:27050 MARK xset 0x5/0xffffffff 
+MARK       all  --  172.16.5.0/24        0.0.0.0/0           MARK xset 0x1/0xffffffff 
+MARK       all  --  172.16.39.8          0.0.0.0/0           MARK xset 0x5/0xffffffff 
+MARK       all  --  172.16.39.12         0.0.0.0/0           MARK xset 0x5/0xffffffff 
+MARK       all  --  172.16.39.26         0.0.0.0/0           MARK xset 0x5/0xffffffff 
+MARK       all  --  172.16.41.3          0.0.0.0/0           MARK xset 0x3/0xffffffff 
+MARK       all  --  172.16.41.9          0.0.0.0/0           MARK xset 0x5/0xffffffff 
+MARK       all  --  172.16.5.45          0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.150         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.163         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.164         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.116         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.118         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.119         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.120         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.160         0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       all  --  172.16.5.87          0.0.0.0/0           MARK xset 0x2/0xffffffff 
+MARK       udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3074 MARK xset 0x2/0xffffffff 
+MARK       udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:27014:27050 MARK xset 0x2/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3074 MARK xset 0x2/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:27000:27030 MARK xset 0x2/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2099 MARK xset 0x4/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:5222 MARK xset 0x4/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:5223 MARK xset 0x4/0xffffffff 
+MARK       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:8393:8400 MARK xset 0x4/0xffffffff 
+MARK       udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:5000:5500 MARK xset 0x4/0xffffffff 
+MARK       all  --  0.0.0.0/0            0.0.0.0/0           source IP range 172.16.62.1-172.16.63.255 MARK xset 0x2/0xffffffff 
+MARK       all  --  0.0.0.0/0            0.0.0.0/0           source IP range 172.16.61.1-172.16.61.255 MARK xset 0x4/0xffffffff 
+MARK       all  --  0.0.0.0/0            0.0.0.0/0           source IP range 172.16.61.1-172.16.61.255 MARK xset 0x3/0xffffffff 
+MARK       all  --  172.16.39.13         0.0.0.0/0           MARK xset 0x4/0xffffffff 
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+MARK       udp  --  0.0.0.0/0            0.0.0.0/0           udp spt:1194 MARK xset 0x2/0xffffffff 
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination         
