@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# FoM website ssh access
+
+CHAIN='fom-website-ssh'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 22222 --destination ownage.fom.be -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 22222 --destination carnage.fom.be -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN

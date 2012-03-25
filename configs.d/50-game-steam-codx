@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# Ref: http://portforward.com/cports.htm
+#
+#							TCP					UDP
+# CoD						28960				20500, 20510, 28960
+# CoD 2						28960 				20500, 20510, 28960 
+# CoD 4						28960 				28960 
+# CoD - Modern Warfare 2	27014-27050 		1500, 3005, 3101, 3478-4380, 27000-27030, 28960 
+# CoD - MW3                 5938                5938
+
+# Not ipmlemented:
+# CoD - United Offensive	28960 				20500, 20510, 20600, 20610, 28960 
+# CoD - World at War		28960				3074, 28960 
+# CoD - Black Ops			3074, 27014-27050 	3074, 3478-4380, 27000-27030 
+
+
+CHAIN='game-steam-codx'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+# Call of Duty 1 & 2 (COD1 & COD2)
+# http://portforward.com/cports.htm
+iptables -A $CHAIN -p tcp --dport 28960 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 28960 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 20500 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 20510 -j ACCEPT
+
+# CoD 4
+# TCP:	28960 (see cod1 & cod2)
+# UDP: 28960 (see cod1 & cod2)
+#iptables -A $CHAIN -p udp --dport 28905 -j ACCEPT # FOR COD4 COMPO @ VORAX SERVER INET
+
+# Modern Warfare 2 (COD6)
+# TCP: 27014-27050
+# UDP: 1500, 3005, 3101, 3478-4380 (see game-steam), 27000-27030 (see game-steam), 28960 (see cod1 & cod2)
+iptables -A $CHAIN -p udp --dport 1500 -j ACCEPT 
+iptables -A $CHAIN -p udp --dport 3005 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3101 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3084 -j ACCEPT
+
+# MW3
+# could be 80-81,443,3074-3075,3478-3479,3658,5223
+iptables -A $CHAIN -p udp --dport 3074:3075 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 5938 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 5938 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 1863 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 33033 -j ACCEPT
+
+#iptables -t mangle -A PREROUTING -m iprange --src-range 212.3.238.1-212.3.238.255 -j MARK --set-mark 2
+#iptables -t mangle -A PREROUTING -m iprange --src-range 68.142.91.1-68.142.91.255 -j MARK --set-mark 2
+#iptables -t mangle -A PREROUTING -m iprange --src-range 209.170.124.1-209.170.124.255 -j MARK --set-mark 2
+#iptables -t mangle -A PREROUTING -m iprange --src-range 208.64.200.1-208.64.200.255 -j MARK --set-mark 2
+
+# URL: http://portforward.com/cports.htm
+# 3074, 27014-27050 TCP
+# 3074, 27000-27030 UDP
+iptables -t mangle -A PREROUTING -p udp --dport 3074 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -p udp --dport 27014:27050 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -p tcp --dport 3074 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -p tcp --dport 27000:27030 -j MARK --set-mark 2
+
+# Servers
+# PUT FUCKING MW3 IN RANGE PL0X
+iptables -t mangle -A PREROUTING --src 172.16.5.45 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.150 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.163 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.164 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.116 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.118 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.119 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.120 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.160 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING --src 172.16.5.87 -j MARK --set-mark 2
+
+iptables -A FORWARD -j $CHAIN

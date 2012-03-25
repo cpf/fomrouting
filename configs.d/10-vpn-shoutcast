@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MARK=10
+RTTABLE=tunnel0
+
+ip rule del fwmark $MARK |true
+ip rule add fwmark $MARK table $RTTABLE
+
+iptables -t mangle -A PREROUTING --destination 192.168.66.0/24 -j MARK --set-mark $MARK

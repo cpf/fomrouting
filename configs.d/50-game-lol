@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# iptable rules for game:
+# League of Legends
+#
+# Ref:
+# * https://support.leagueoflegends.com/entries/20133372-port-forwarding
+
+CHAIN='game-lol'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+iptables -A $CHAIN -p tcp --dport 2099 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 5222 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 5223 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 8393:8400 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 5000:5500 -j ACCEPT
+
+iptables -t mangle -A PREROUTING -p tcp --dport 2099 -j MARK --set-mark 4
+iptables -t mangle -A PREROUTING -p tcp --dport 5222 -j MARK --set-mark 4
+iptables -t mangle -A PREROUTING -p tcp --dport 5223 -j MARK --set-mark 4
+iptables -t mangle -A PREROUTING -p tcp --dport 8393:8400 -j MARK --set-mark 4
+iptables -t mangle -A PREROUTING -p udp --dport 5000:5500 -j MARK --set-mark 4
+
+iptables -A $CHAIN -d 95.172.69.0/24 -j ACCEPT
+iptables -A $CHAIN -d 74.201.71.0/24 -j ACCEPT
+iptables -A $CHAIN -d 66.151.54.0/24 -j ACCEPT
+#
+iptables -A FORWARD -j $CHAIN

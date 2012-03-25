@@ -1,0 +1,4 @@
+:msg,contains,"iptables: [DROP IP SRC]" /var/log/iptables/drop-by-source-ip.log
+:msg,contains,"iptables: [DROP]" /var/log/iptables/drop-by-dest-port.log
+:msg,contains,"iptables: " /var/log/iptables/all.log
+& ~

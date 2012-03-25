@@ -17,4 +17,5 @@ iptables -N $CHAIN
 iptables -A $CHAIN -p tcp --dport 6520:6540 -j ACCEPT
 iptables -A FORWARD -j $CHAIN
 
-iptables -t mangle -A PREROUTING -p tcp --dport 6520:6540 -j MARK --set-mark 10 # needs same external ip as http/https ?
+# @CPF --set-mark 10 ??? dat is uw openvpn table man
+# iptables -t mangle -A PREROUTING -p tcp --dport 6520:6540 -j MARK --set-mark 10 # needs same external ip as http/https ?

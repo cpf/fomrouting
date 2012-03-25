@@ -3,6 +3,8 @@
 # Author: Toon Geens
 #
 
+export PYTHONPATH="/root/fomrouting/tools:"
+
 # Enable connection tracking
 modprobe ip_conntrack 		# might be enabled by default
 modprobe ip_conntrack_ftp	# was not enbaled by default, required for passive FTP
@@ -34,9 +36,12 @@ iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth1.15 -j MASQUERADE
 iptables -t mangle -F
 #iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.3.1-172.16.3.255 -j MARK --set-mark 1	# CREW
 
-iptables -t mangle -A PREROUTING --source 172.16.33.3 -j MARK --set-mark 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.43.1-172.16.44.255 -j MARK --set-mark 2	# VIP
 iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.51.1-172.16.58.255 -j MARK --set-mark 2	# Zaal deel 1
-iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.59.1-172.16.66.255 -j MARK --set-mark 3	# Zaal deel 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.59.1-172.16.60.255 -j MARK --set-mark 3	# Zaal deel 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.61.1-172.16.61.255 -j MARK --set-mark 4	# Zaal deel 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.62.1-172.16.63.255 -j MARK --set-mark 2	# Zaal deel 2
+iptables -t mangle -A PREROUTING -m iprange --src-range 172.16.65.1-172.16.67.255 -j MARK --set-mark 4	# Zaal deel 3
 
 iptables -t mangle -A PREROUTING -p tcp --dport 80 -j MARK --set-mark 1
 iptables -t mangle -A PREROUTING -p tcp --dport 443 -j MARK --set-mark 1		# route https over proxy
@@ -47,14 +52,14 @@ iptables -t filter -F
 iptables -t filter -P FORWARD DROP
 iptables -t filter -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-iptables -t filter -A FORWARD -p tcp --dport 80 -j ACCEPT 							# redirected to 8080 proxy
+iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-port 8080  		# You better start redirecting 80 to 8080 proxy
+#iptables -t filter -A FORWARD -p tcp --dport 80 -j ACCEPT 							# redirected to 8080 proxy
 iptables -t filter -A FORWARD -p tcp --dport 443 -j ACCEPT 							# allow https to go through
-iptables -t filter -A FORWARD -p tcp --dport 22 -j ACCEPT 							# SSH
-iptables -t filter -A FORWARD -p tcp --dport 2222 -j ACCEPT 						# temp - rent a lan
+#iptables -t filter -A FORWARD -p tcp --dport 22 -j ACCEPT 							# SSH
+#iptables -t filter -A FORWARD -p tcp --dport 2222 -j ACCEPT 						# temp - rent a lan
 iptables -t filter -A FORWARD -p icmp -j ACCEPT										# Allow icmp ping
 
 #iptables -t filter -A FORWARD -p 
-
 
 
 # allow ftp for de-raedt.eu
@@ -65,3 +70,4 @@ run-parts --verbose configs.d
 
 iptables -t filter -A FORWARD --source 172.16.5.160 -j LOG --log-level 7 --log-prefix "iptables: [DROP] thomas "
 iptables -t filter -A FORWARD -m limit --limit 60/minute -j LOG --log-level 7 --log-prefix "iptables: [DROP] "
+run-parts --verbose --regex '.*' configs.d

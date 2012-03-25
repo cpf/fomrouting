@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Battlefield 3
+
+CHAIN='battlefield-3'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+#iptables -A $CHAIN -p tcp --destination 31.222.133.87 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 14000:14016 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 22990:23006 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 25200:25300 -j ACCEPT
+iptables -A $CHAIN -p udp --dport 3544 -j ACCEPT
+
+iptables -A $CHAIN -p tcp --dport 17502 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 22990 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 42127 -j ACCEPT
+iptables -A $CHAIN -p tcp --dport 57450 -j ACCEPT
+
+iptables -A FORWARD -j $CHAIN
+
+#iptables -t mangle -A PREROUTING --destination 173.199.111.207 -j MARK --set-mark 5

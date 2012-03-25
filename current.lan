@@ -1,0 +1,675 @@
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy DROP)
+target     prot opt source               destination         
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:80 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:443 
+ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0           
+ACCEPT     tcp  --  0.0.0.0/0            77.243.236.220      
+ACCEPT     tcp  --  172.16.40.0/24       0.0.0.0/0           
+ACCEPT     tcp  --  172.16.41.0/24       0.0.0.0/0           
+ACCEPT     tcp  --  172.16.42.0/24       0.0.0.0/0           
+game-aion  all  --  0.0.0.0/0            0.0.0.0/0           
+game-bf2bc  all  --  0.0.0.0/0            0.0.0.0/0           
+game-blc   all  --  0.0.0.0/0            0.0.0.0/0           
+game-cabal  all  --  0.0.0.0/0            0.0.0.0/0           
+50-cartoon-mp-shooter  all  --  0.0.0.0/0            0.0.0.0/0           
+game-coh   all  --  0.0.0.0/0            0.0.0.0/0           
+game-conan  all  --  0.0.0.0/0            0.0.0.0/0           
+game-crossfire  all  --  0.0.0.0/0            0.0.0.0/0           
+game-crysis2  all  --  0.0.0.0/0            0.0.0.0/0           
+game-eve   all  --  0.0.0.0/0            0.0.0.0/0           
+game-everquest2  all  --  0.0.0.0/0            0.0.0.0/0           
+game-ff14  all  --  0.0.0.0/0            0.0.0.0/0           
+game-gerena  all  --  0.0.0.0/0            0.0.0.0/0           
+game-guildwars  all  --  0.0.0.0/0            0.0.0.0/0           
+game-newerth  all  --  0.0.0.0/0            0.0.0.0/0           
+game-heroesonline  all  --  0.0.0.0/0            0.0.0.0/0           
+game-lol   all  --  0.0.0.0/0            0.0.0.0/0           
+game-lotro  all  --  0.0.0.0/0            0.0.0.0/0           
+game-minecraft  all  --  0.0.0.0/0            0.0.0.0/0           
+game-moh   all  --  0.0.0.0/0            0.0.0.0/0           
+game-pwi   all  --  0.0.0.0/0            0.0.0.0/0           
+game-quake-live  all  --  0.0.0.0/0            0.0.0.0/0           
+game-steam-ro2  all  --  0.0.0.0/0            0.0.0.0/0           
+game-rift  all  --  0.0.0.0/0            0.0.0.0/0           
+game-rom   all  --  0.0.0.0/0            0.0.0.0/0           
+game-sc2   all  --  0.0.0.0/0            0.0.0.0/0           
+game-shafya  all  --  0.0.0.0/0            0.0.0.0/0           
+game-silkroads  all  --  0.0.0.0/0            0.0.0.0/0           
+game-steam  all  --  0.0.0.0/0            0.0.0.0/0           
+game-steam-codx  all  --  0.0.0.0/0            0.0.0.0/0           
+game-war   all  --  0.0.0.0/0            0.0.0.0/0           
+game-warhammer  all  --  0.0.0.0/0            0.0.0.0/0           
+game-wow   all  --  0.0.0.0/0            0.0.0.0/0           
+game-starwars  all  --  0.0.0.0/0            0.0.0.0/0           
+psn        all  --  0.0.0.0/0            0.0.0.0/0           
+server-ese-anti-cheat  all  --  0.0.0.0/0            0.0.0.0/0           
+EA-login   all  --  0.0.0.0/0            0.0.0.0/0           
+ACCEPT     all  --  172.16.5.0/24        0.0.0.0/0           
+teamspeak2  all  --  0.0.0.0/0            0.0.0.0/0           
+teamspeak3  all  --  0.0.0.0/0            0.0.0.0/0           
+ventrillo  all  --  0.0.0.0/0            0.0.0.0/0           
+vpn        all  --  0.0.0.0/0            0.0.0.0/0           
+xbox       all  --  0.0.0.0/0            0.0.0.0/0           
+xfire      all  --  0.0.0.0/0            0.0.0.0/0           
+battlefield-3  all  --  0.0.0.0/0            0.0.0.0/0           
+fom-website-ssh  all  --  0.0.0.0/0            0.0.0.0/0           
+ACCEPT     all  --  172.16.39.8          0.0.0.0/0           
+ACCEPT     all  --  172.16.39.12         0.0.0.0/0           
+ACCEPT     all  --  172.16.39.26         0.0.0.0/0           
+log-drop   all  --  0.0.0.0/0            0.0.0.0/0           
+ACCEPT     all  --  172.16.39.31         0.0.0.0/0           
+ACCEPT     all  --  172.16.39.13         0.0.0.0/0           
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain 50-cartoon-mp-shooter (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:7000:7009 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:7000:7009 
+
+Chain EA-login (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:18121 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:18126 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:18126 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:13505 
+
+Chain battlefield-3 (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:14000:14016 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:22990:23006 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:25200:25300 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3544 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:17502 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:22990 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:42127 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:57450 
+
+Chain crew-unlimited (0 references)
+target     prot opt source               destination         
+
+Chain fom-website-ssh (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            78.47.165.238       tcp dpt:22222 
+ACCEPT     tcp  --  0.0.0.0/0            85.119.217.39       tcp dpt:22222 
+
+Chain game-aion (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2106 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2009 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:7777 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:10241 
+
+Chain game-bf2bc (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:18121 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:18126 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:18126 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:13505 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:18390 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:18395 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:18181:18186 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:18181:18186 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:1050 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:2418 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:4355 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:11050:11070 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:19009 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:19567:19587 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:20867 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:9946 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:20167 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:11022 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:16767 
+
+Chain game-blc (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:10204 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:54545 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:50000:50500 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:50000:50500 
+ACCEPT     tcp  --  0.0.0.0/0            208.82.194.133      tcp dpt:24568 
+
+Chain game-cabal (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:38111:38125 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:6800:6899 
+
+Chain game-coh (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:6112 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:30260 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:9100 
+
+Chain game-conan (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:7000:7999 
+
+Chain game-crossfire (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:13008 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:10009 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:16666 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:13008 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:10009 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:16666 
+
+Chain game-crysis2 (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            69.10.30.248        udp dpt:27900 
+ACCEPT     udp  --  0.0.0.0/0            69.10.30.254        udp dpt:27901 
+ACCEPT     udp  --  0.0.0.0/0            69.10.30.253        udp dpt:27901 
+ACCEPT     udp  --  0.0.0.0/0            69.10.30.248        udp dpt:27900 
+ACCEPT     udp  --  0.0.0.0/0            69.10.30.248        udp dpt:29910 
+ACCEPT     tcp  --  0.0.0.0/0            69.10.30.242        tcp dpt:29900 
+ACCEPT     tcp  --  0.0.0.0/0            69.10.30.241        tcp dpt:29901 
+ACCEPT     tcp  --  0.0.0.0/0            69.10.30.247        tcp dpt:28910 
+
+Chain game-eve (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:26000 
+
+Chain game-everquest2 (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:7000 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:7010 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:3016:3021 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:9700:9703 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:9100 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:32800:33000 
+
+Chain game-ff14 (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:54992:55551 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:55296:55551 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:443 
+
+Chain game-fifa11 (0 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:9980:9989 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:10000:10500 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:42100:42199 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3659 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:6000 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:9570 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:10500:12500 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:1863 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:33033 
+
+Chain game-gerena (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:7456 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:1513 
+
+Chain game-guildwars (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:6112 
+
+Chain game-heroesonline (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            159.153.235.1       
+ACCEPT     tcp  --  0.0.0.0/0            159.153.234.50      
+
+Chain game-hltv (0 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:27020 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:27020 
+
+Chain game-lol (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2099 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:5222 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:5223 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:8393:8400 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:5000:5500 
+ACCEPT     all  --  0.0.0.0/0            95.172.69.0/24      
+ACCEPT     all  --  0.0.0.0/0            74.201.71.0/24      
+ACCEPT     all  --  0.0.0.0/0            66.151.54.0/24      
+
+Chain game-lotro (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:9000:9013 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:9000:9013 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:2900:2913 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:2900:2913 
+
+Chain game-minecraft (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:25561:25565 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:25561:25565 
+
+Chain game-moh (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:6140 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:61665 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:63048 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:7673 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:9999 
+
+Chain game-newerth (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:11031 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:11235:11335 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:11235:11335 
+
+Chain game-pwi (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:29000 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:29000 
+
+Chain game-quake-live (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:5222 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:27000:27999 
+
+Chain game-rift (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:6520:6540 
+
+Chain game-rom (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:21002 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:16401:16402 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:16502 
+
+Chain game-sc2 (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:1119 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:1120 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:1119 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:1120 
+
+Chain game-shafya (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:30800:30810 
+
+Chain game-silkroads (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:15779 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:15881 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:15883 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:15884 
+
+Chain game-starwars (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:17384 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:25610 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8995 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:12000:12999 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:20000:30000 
+
+Chain game-steam (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:27000:27030 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:27014:27050 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:4380 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3478 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:4379:4380 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:4380 
+
+Chain game-steam-codx (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:3074:3075 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:28960 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:28960 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:20500 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:20510 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:1500 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3005 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3101 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3084 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:5938 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:5938 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:1863 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:33033 
+
+Chain game-steam-ro2 (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:7757:7758 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:7767 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:28902 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8075 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:20610 
+
+Chain game-war (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:1380 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:10622 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:33100:33500 
+
+Chain game-warhammer (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:1380 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8048 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:1380 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:8048 
+
+Chain game-wow (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:1119 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3724 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:6112 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:6881:6999 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3724 
+
+Chain log-drop (1 references)
+target     prot opt source               destination         
+LOG        all  --  172.16.1.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.1.0/24] ' 
+LOG        all  --  172.16.2.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.2.0/24] ' 
+LOG        all  --  172.16.3.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.3.0/24] ' 
+LOG        all  --  172.16.4.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.4.0/24] ' 
+LOG        all  --  172.16.5.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.5.0/24] ' 
+LOG        all  --  172.16.6.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.6.0/24] ' 
+LOG        all  --  172.16.7.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.7.0/24] ' 
+LOG        all  --  172.16.8.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.8.0/24] ' 
+LOG        all  --  172.16.9.0/24        0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.9.0/24] ' 
+LOG        all  --  172.16.10.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.10.0/24] ' 
+LOG        all  --  172.16.11.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.11.0/24] ' 
+LOG        all  --  172.16.12.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.12.0/24] ' 
+LOG        all  --  172.16.13.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.13.0/24] ' 
+LOG        all  --  172.16.14.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.14.0/24] ' 
+LOG        all  --  172.16.15.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.15.0/24] ' 
+LOG        all  --  172.16.16.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.16.0/24] ' 
+LOG        all  --  172.16.17.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.17.0/24] ' 
+LOG        all  --  172.16.18.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.18.0/24] ' 
+LOG        all  --  172.16.19.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.19.0/24] ' 
+LOG        all  --  172.16.20.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.20.0/24] ' 
+LOG        all  --  172.16.21.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.21.0/24] ' 
+LOG        all  --  172.16.22.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.22.0/24] ' 
+LOG        all  --  172.16.23.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.23.0/24] ' 
+LOG        all  --  172.16.24.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.24.0/24] ' 
+LOG        all  --  172.16.25.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.25.0/24] ' 
+LOG        all  --  172.16.26.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.26.0/24] ' 
+LOG        all  --  172.16.27.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.27.0/24] ' 
+LOG        all  --  172.16.28.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.28.0/24] ' 
+LOG        all  --  172.16.29.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.29.0/24] ' 
+LOG        all  --  172.16.30.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.30.0/24] ' 
+LOG        all  --  172.16.31.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.31.0/24] ' 
+LOG        all  --  172.16.32.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.32.0/24] ' 
+LOG        all  --  172.16.33.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.33.0/24] ' 
+LOG        all  --  172.16.34.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.34.0/24] ' 
+LOG        all  --  172.16.35.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.35.0/24] ' 
+LOG        all  --  172.16.36.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.36.0/24] ' 
+LOG        all  --  172.16.37.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.37.0/24] ' 
+LOG        all  --  172.16.38.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.38.0/24] ' 
+LOG        all  --  172.16.39.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.39.0/24] ' 
+LOG        all  --  172.16.40.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.40.0/24] ' 
+LOG        all  --  172.16.41.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.41.0/24] ' 
+LOG        all  --  172.16.42.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.42.0/24] ' 
+LOG        all  --  172.16.43.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.43.0/24] ' 
+LOG        all  --  172.16.44.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.44.0/24] ' 
+LOG        all  --  172.16.45.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.45.0/24] ' 
+LOG        all  --  172.16.46.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.46.0/24] ' 
+LOG        all  --  172.16.47.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.47.0/24] ' 
+LOG        all  --  172.16.48.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.48.0/24] ' 
+LOG        all  --  172.16.49.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.49.0/24] ' 
+LOG        all  --  172.16.50.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.50.0/24] ' 
+LOG        all  --  172.16.51.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.51.0/24] ' 
+LOG        all  --  172.16.52.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.52.0/24] ' 
+LOG        all  --  172.16.53.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.53.0/24] ' 
+LOG        all  --  172.16.54.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.54.0/24] ' 
+LOG        all  --  172.16.55.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.55.0/24] ' 
+LOG        all  --  172.16.56.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.56.0/24] ' 
+LOG        all  --  172.16.57.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.57.0/24] ' 
+LOG        all  --  172.16.58.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.58.0/24] ' 
+LOG        all  --  172.16.59.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.59.0/24] ' 
+LOG        all  --  172.16.60.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.60.0/24] ' 
+LOG        all  --  172.16.61.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.61.0/24] ' 
+LOG        all  --  172.16.62.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.62.0/24] ' 
+LOG        all  --  172.16.63.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.63.0/24] ' 
+LOG        all  --  172.16.64.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.64.0/24] ' 
+LOG        all  --  172.16.65.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.65.0/24] ' 
+LOG        all  --  172.16.66.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.66.0/24] ' 
+LOG        all  --  172.16.67.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.67.0/24] ' 
+LOG        all  --  172.16.68.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.68.0/24] ' 
+LOG        all  --  172.16.69.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.69.0/24] ' 
+LOG        all  --  172.16.70.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.70.0/24] ' 
+LOG        all  --  172.16.71.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.71.0/24] ' 
+LOG        all  --  172.16.72.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.72.0/24] ' 
+LOG        all  --  172.16.73.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.73.0/24] ' 
+LOG        all  --  172.16.74.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.74.0/24] ' 
+LOG        all  --  172.16.75.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.75.0/24] ' 
+LOG        all  --  172.16.76.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.76.0/24] ' 
+LOG        all  --  172.16.77.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.77.0/24] ' 
+LOG        all  --  172.16.78.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.78.0/24] ' 
+LOG        all  --  172.16.79.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.79.0/24] ' 
+LOG        all  --  172.16.80.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.80.0/24] ' 
+LOG        all  --  172.16.81.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.81.0/24] ' 
+LOG        all  --  172.16.82.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.82.0/24] ' 
+LOG        all  --  172.16.83.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.83.0/24] ' 
+LOG        all  --  172.16.84.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.84.0/24] ' 
+LOG        all  --  172.16.85.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.85.0/24] ' 
+LOG        all  --  172.16.86.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.86.0/24] ' 
+LOG        all  --  172.16.87.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.87.0/24] ' 
+LOG        all  --  172.16.88.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.88.0/24] ' 
+LOG        all  --  172.16.89.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.89.0/24] ' 
+LOG        all  --  172.16.90.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.90.0/24] ' 
+LOG        all  --  172.16.91.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.91.0/24] ' 
+LOG        all  --  172.16.92.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.92.0/24] ' 
+LOG        all  --  172.16.93.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.93.0/24] ' 
+LOG        all  --  172.16.94.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.94.0/24] ' 
+LOG        all  --  172.16.95.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.95.0/24] ' 
+LOG        all  --  172.16.96.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.96.0/24] ' 
+LOG        all  --  172.16.97.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.97.0/24] ' 
+LOG        all  --  172.16.98.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.98.0/24] ' 
+LOG        all  --  172.16.99.0/24       0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.99.0/24] ' 
+LOG        all  --  172.16.100.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.100.0/24] ' 
+LOG        all  --  172.16.101.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.101.0/24] ' 
+LOG        all  --  172.16.102.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.102.0/24] ' 
+LOG        all  --  172.16.103.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.103.0/24] ' 
+LOG        all  --  172.16.104.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.104.0/24] ' 
+LOG        all  --  172.16.105.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.105.0/24] ' 
+LOG        all  --  172.16.106.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.106.0/24] ' 
+LOG        all  --  172.16.107.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.107.0/24] ' 
+LOG        all  --  172.16.108.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.108.0/24] ' 
+LOG        all  --  172.16.109.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.109.0/24] ' 
+LOG        all  --  172.16.110.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.110.0/24] ' 
+LOG        all  --  172.16.111.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.111.0/24] ' 
+LOG        all  --  172.16.112.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.112.0/24] ' 
+LOG        all  --  172.16.113.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.113.0/24] ' 
+LOG        all  --  172.16.114.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.114.0/24] ' 
+LOG        all  --  172.16.115.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.115.0/24] ' 
+LOG        all  --  172.16.116.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.116.0/24] ' 
+LOG        all  --  172.16.117.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.117.0/24] ' 
+LOG        all  --  172.16.118.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.118.0/24] ' 
+LOG        all  --  172.16.119.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.119.0/24] ' 
+LOG        all  --  172.16.120.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.120.0/24] ' 
+LOG        all  --  172.16.121.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.121.0/24] ' 
+LOG        all  --  172.16.122.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.122.0/24] ' 
+LOG        all  --  172.16.123.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.123.0/24] ' 
+LOG        all  --  172.16.124.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.124.0/24] ' 
+LOG        all  --  172.16.125.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.125.0/24] ' 
+LOG        all  --  172.16.126.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.126.0/24] ' 
+LOG        all  --  172.16.127.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.127.0/24] ' 
+LOG        all  --  172.16.128.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.128.0/24] ' 
+LOG        all  --  172.16.129.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.129.0/24] ' 
+LOG        all  --  172.16.130.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.130.0/24] ' 
+LOG        all  --  172.16.131.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.131.0/24] ' 
+LOG        all  --  172.16.132.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.132.0/24] ' 
+LOG        all  --  172.16.133.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.133.0/24] ' 
+LOG        all  --  172.16.134.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.134.0/24] ' 
+LOG        all  --  172.16.135.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.135.0/24] ' 
+LOG        all  --  172.16.136.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.136.0/24] ' 
+LOG        all  --  172.16.137.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.137.0/24] ' 
+LOG        all  --  172.16.138.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.138.0/24] ' 
+LOG        all  --  172.16.139.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.139.0/24] ' 
+LOG        all  --  172.16.140.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.140.0/24] ' 
+LOG        all  --  172.16.141.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.141.0/24] ' 
+LOG        all  --  172.16.142.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.142.0/24] ' 
+LOG        all  --  172.16.143.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.143.0/24] ' 
+LOG        all  --  172.16.144.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.144.0/24] ' 
+LOG        all  --  172.16.145.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.145.0/24] ' 
+LOG        all  --  172.16.146.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.146.0/24] ' 
+LOG        all  --  172.16.147.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.147.0/24] ' 
+LOG        all  --  172.16.148.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.148.0/24] ' 
+LOG        all  --  172.16.149.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.149.0/24] ' 
+LOG        all  --  172.16.150.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.150.0/24] ' 
+LOG        all  --  172.16.151.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.151.0/24] ' 
+LOG        all  --  172.16.152.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.152.0/24] ' 
+LOG        all  --  172.16.153.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.153.0/24] ' 
+LOG        all  --  172.16.154.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.154.0/24] ' 
+LOG        all  --  172.16.155.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.155.0/24] ' 
+LOG        all  --  172.16.156.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.156.0/24] ' 
+LOG        all  --  172.16.157.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.157.0/24] ' 
+LOG        all  --  172.16.158.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.158.0/24] ' 
+LOG        all  --  172.16.159.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.159.0/24] ' 
+LOG        all  --  172.16.160.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.160.0/24] ' 
+LOG        all  --  172.16.161.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.161.0/24] ' 
+LOG        all  --  172.16.162.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.162.0/24] ' 
+LOG        all  --  172.16.163.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.163.0/24] ' 
+LOG        all  --  172.16.164.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.164.0/24] ' 
+LOG        all  --  172.16.165.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.165.0/24] ' 
+LOG        all  --  172.16.166.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.166.0/24] ' 
+LOG        all  --  172.16.167.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.167.0/24] ' 
+LOG        all  --  172.16.168.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.168.0/24] ' 
+LOG        all  --  172.16.169.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.169.0/24] ' 
+LOG        all  --  172.16.170.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.170.0/24] ' 
+LOG        all  --  172.16.171.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.171.0/24] ' 
+LOG        all  --  172.16.172.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.172.0/24] ' 
+LOG        all  --  172.16.173.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.173.0/24] ' 
+LOG        all  --  172.16.174.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.174.0/24] ' 
+LOG        all  --  172.16.175.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.175.0/24] ' 
+LOG        all  --  172.16.176.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.176.0/24] ' 
+LOG        all  --  172.16.177.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.177.0/24] ' 
+LOG        all  --  172.16.178.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.178.0/24] ' 
+LOG        all  --  172.16.179.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.179.0/24] ' 
+LOG        all  --  172.16.180.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.180.0/24] ' 
+LOG        all  --  172.16.181.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.181.0/24] ' 
+LOG        all  --  172.16.182.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.182.0/24] ' 
+LOG        all  --  172.16.183.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.183.0/24] ' 
+LOG        all  --  172.16.184.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.184.0/24] ' 
+LOG        all  --  172.16.185.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.185.0/24] ' 
+LOG        all  --  172.16.186.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.186.0/24] ' 
+LOG        all  --  172.16.187.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.187.0/24] ' 
+LOG        all  --  172.16.188.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.188.0/24] ' 
+LOG        all  --  172.16.189.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.189.0/24] ' 
+LOG        all  --  172.16.190.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.190.0/24] ' 
+LOG        all  --  172.16.191.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.191.0/24] ' 
+LOG        all  --  172.16.192.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.192.0/24] ' 
+LOG        all  --  172.16.193.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.193.0/24] ' 
+LOG        all  --  172.16.194.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.194.0/24] ' 
+LOG        all  --  172.16.195.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.195.0/24] ' 
+LOG        all  --  172.16.196.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.196.0/24] ' 
+LOG        all  --  172.16.197.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.197.0/24] ' 
+LOG        all  --  172.16.198.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.198.0/24] ' 
+LOG        all  --  172.16.199.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.199.0/24] ' 
+LOG        all  --  172.16.200.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.200.0/24] ' 
+LOG        all  --  172.16.201.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.201.0/24] ' 
+LOG        all  --  172.16.202.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.202.0/24] ' 
+LOG        all  --  172.16.203.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.203.0/24] ' 
+LOG        all  --  172.16.204.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.204.0/24] ' 
+LOG        all  --  172.16.205.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.205.0/24] ' 
+LOG        all  --  172.16.206.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.206.0/24] ' 
+LOG        all  --  172.16.207.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.207.0/24] ' 
+LOG        all  --  172.16.208.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.208.0/24] ' 
+LOG        all  --  172.16.209.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.209.0/24] ' 
+LOG        all  --  172.16.210.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.210.0/24] ' 
+LOG        all  --  172.16.211.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.211.0/24] ' 
+LOG        all  --  172.16.212.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.212.0/24] ' 
+LOG        all  --  172.16.213.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.213.0/24] ' 
+LOG        all  --  172.16.214.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.214.0/24] ' 
+LOG        all  --  172.16.215.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.215.0/24] ' 
+LOG        all  --  172.16.216.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.216.0/24] ' 
+LOG        all  --  172.16.217.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.217.0/24] ' 
+LOG        all  --  172.16.218.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.218.0/24] ' 
+LOG        all  --  172.16.219.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.219.0/24] ' 
+LOG        all  --  172.16.220.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.220.0/24] ' 
+LOG        all  --  172.16.221.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.221.0/24] ' 
+LOG        all  --  172.16.222.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.222.0/24] ' 
+LOG        all  --  172.16.223.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.223.0/24] ' 
+LOG        all  --  172.16.224.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.224.0/24] ' 
+LOG        all  --  172.16.225.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.225.0/24] ' 
+LOG        all  --  172.16.226.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.226.0/24] ' 
+LOG        all  --  172.16.227.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.227.0/24] ' 
+LOG        all  --  172.16.228.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.228.0/24] ' 
+LOG        all  --  172.16.229.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.229.0/24] ' 
+LOG        all  --  172.16.230.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.230.0/24] ' 
+LOG        all  --  172.16.231.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.231.0/24] ' 
+LOG        all  --  172.16.232.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.232.0/24] ' 
+LOG        all  --  172.16.233.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.233.0/24] ' 
+LOG        all  --  172.16.234.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.234.0/24] ' 
+LOG        all  --  172.16.235.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.235.0/24] ' 
+LOG        all  --  172.16.236.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.236.0/24] ' 
+LOG        all  --  172.16.237.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.237.0/24] ' 
+LOG        all  --  172.16.238.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.238.0/24] ' 
+LOG        all  --  172.16.239.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.239.0/24] ' 
+LOG        all  --  172.16.240.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.240.0/24] ' 
+LOG        all  --  172.16.241.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.241.0/24] ' 
+LOG        all  --  172.16.242.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.242.0/24] ' 
+LOG        all  --  172.16.243.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.243.0/24] ' 
+LOG        all  --  172.16.244.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.244.0/24] ' 
+LOG        all  --  172.16.245.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.245.0/24] ' 
+LOG        all  --  172.16.246.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.246.0/24] ' 
+LOG        all  --  172.16.247.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.247.0/24] ' 
+LOG        all  --  172.16.248.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.248.0/24] ' 
+LOG        all  --  172.16.249.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.249.0/24] ' 
+LOG        all  --  172.16.250.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.250.0/24] ' 
+LOG        all  --  172.16.251.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.251.0/24] ' 
+LOG        all  --  172.16.252.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.252.0/24] ' 
+LOG        all  --  172.16.253.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.253.0/24] ' 
+LOG        all  --  172.16.254.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.254.0/24] ' 
+LOG        all  --  172.16.255.0/24      0.0.0.0/0           limit: avg 30/min burst 5 LOG flags 0 level 7 prefix `iptables: [172.16.255.0/24] ' 
+
+Chain psn (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            198.107.157.154     tcp dpt:5223 
+ACCEPT     udp  --  0.0.0.0/0            198.107.157.154     udp dpt:3478 
+ACCEPT     udp  --  0.0.0.0/0            198.107.157.154     udp dpt:3479 
+ACCEPT     udp  --  0.0.0.0/0            198.107.157.154     udp dpt:3658 
+
+Chain server-ese-anti-cheat (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3011 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:4811 
+
+Chain teamspeak2 (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:51234 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:14534 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:8765:9015 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:51234 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:14534 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:8765:9015 
+
+Chain teamspeak3 (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2008 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:30033 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:10011 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:9987:10237 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:30033 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:10011 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:9987:10237 
+
+Chain ventrillo (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:6000 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:6100 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpts:3784:4034 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:6000 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:6100 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpts:3784:4034 
+
+Chain vpn (1 references)
+target     prot opt source               destination         
+ACCEPT     all  --  0.0.0.0/0            81.82.205.18        
+ACCEPT     all  --  172.16.37.8          0.0.0.0/0           
+ACCEPT     all  --  172.16.37.9          0.0.0.0/0           
+ACCEPT     all  --  0.0.0.0/0            82.197.206.41       
+ACCEPT     udp  --  0.0.0.0/0            81.82.204.12        udp dpt:1194 
+ACCEPT     udp  --  0.0.0.0/0            81.82.204.251       udp dpt:1194 
+
+Chain xbox (1 references)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:88 
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:3074 
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3074 
+
+Chain xfire (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:25999 

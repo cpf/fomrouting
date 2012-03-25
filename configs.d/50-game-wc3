@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Warcraft 3
+
+CHAIN='game-wc3'
+
+# clear chain
+iptables -F $CHAIN
+iptables -X $CHAIN
+
+# create chain
+iptables -N $CHAIN
+
+#iptables -A $CHAIN -p udp --dport 48845 -j ACCEPT # from log files
+
+iptables -A FORWARD -j $CHAIN
